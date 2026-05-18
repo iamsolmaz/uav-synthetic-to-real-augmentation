@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated paper."
+title: "Data Augmentation Pipeline for Enhanced UAV Surveillance"
+type: conference-paper
+authors:
+  - family-names: Arezoomandan
+    given-names: Solmaz
+  - family-names: Klohoker
+    given-names: John
+  - family-names: Han
+    given-names: David K.
+doi: 10.1007/978-3-031-78172-8_24
+conference:
+  name: International Conference on Pattern Recognition
+repository-code: "https://github.com/iamsolmaz/uav-synthetic-to-real-augmentation"
