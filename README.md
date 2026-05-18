@@ -24,3 +24,21 @@ Real + Translated Synthetic Training Data
 YOLO Drone Detector
         ↓
 Evaluation on Real UAV Images
+```
+
+## Citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@inproceedings{arezoomandan2025data,
+  title={Data Augmentation Pipeline for Enhanced UAV Surveillance},
+  author={Arezoomandan, Solmaz and Klohoker, John and Han, David K.},
+  booktitle={Pattern Recognition. ICPR 2024},
+  series={Lecture Notes in Computer Science},
+  volume={15306},
+  pages={366--380},
+  year={2025},
+  publisher={Springer},
+  doi={10.1007/978-3-031-78172-8_24}
+}
