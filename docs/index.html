@@ -4,122 +4,60 @@
   <meta charset="UTF-8">
   <title>Data Augmentation Pipeline for Enhanced UAV Surveillance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 950px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 0.3em;
-    }
-
-    .authors, .venue {
-      text-align: center;
-      margin: 0.3em 0;
-    }
-
-    .buttons {
-      text-align: center;
-      margin: 25px 0;
-    }
-
-    .buttons a {
-      display: inline-block;
-      margin: 6px;
-      padding: 10px 16px;
-      background: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-      margin: 25px auto;
-      border-radius: 8px;
-    }
-
-    pre {
-      background: #f4f4f4;
-      padding: 15px;
-      overflow-x: auto;
-      border-radius: 6px;
-    }
-
-    .section {
-      margin-top: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
   <h1>Data Augmentation Pipeline for Enhanced UAV Surveillance</h1>
 
   <p class="authors">
-    <strong>Solmaz Arezoomandan</strong>, John Klohoker, David K. Han
+    Solmaz Arezoomandan, John Klohoker, David K. Han
   </p>
 
   <p class="venue">
-    ICPR 2024 · Lecture Notes in Computer Science, Vol. 15306 · Springer
+    ICPR 2024 · Springer LNCS
   </p>
 
-  <div class="buttons">
+  <p class="links">
     <a href="https://link.springer.com/chapter/10.1007/978-3-031-78172-8_24">Paper</a>
     <a href="https://doi.org/10.1007/978-3-031-78172-8_24">DOI</a>
     <a href="https://github.com/iamsolmaz/uav-synthetic-to-real-augmentation">Code</a>
-    <a href="#citation">BibTeX</a>
-  </div>
+  </p>
 
-  <img src="assets/pipeline.png" alt="Overview of the synthetic-to-real UAV augmentation pipeline">
+  <h2>Abstract</h2>
+  <p>
+    This work presents a data augmentation pipeline for enhancing UAV detection
+    by combining synthetic imagery, synthetic-to-real translation, and object
+    detection training. The pipeline uses synthetic UAV imagery generated in a
+    simulation environment and translates it toward the real image domain to
+    improve detector generalization on real-world UAV surveillance datasets.
+  </p>
 
-  <div class="section">
-    <h2>Abstract</h2>
-    <p>
-      This work introduces a two-phase data augmentation pipeline for long-range
-      UAV detection. First, synthetic drone imagery is generated using Unreal Engine
-      to increase dataset diversity. Then, CycleGAN is used to translate synthetic
-      images into a more realistic visual domain, reducing the synthetic-to-real gap.
-      The augmented datasets are used to train YOLO-based drone detectors and are
-      evaluated on multiple unseen real-world UAV detection datasets.
-    </p>
-  </div>
+  <h2>Overview</h2>
+  <p>
+    Long-range UAV detection is challenging because drones are often small,
+    low-resolution, and difficult to distinguish from cluttered backgrounds.
+    Collecting and annotating large-scale real UAV datasets is also expensive.
+    To address this, our work investigates whether synthetic UAV imagery and
+    synthetic-to-real image translation can improve real-world UAV detection.
+  </p>
 
-  <div class="section">
-    <h2>Pipeline</h2>
-    <ol>
-      <li>Generate synthetic UAV images using Unreal Engine.</li>
-      <li>Train CycleGAN for synthetic-to-real image translation.</li>
-      <li>Augment real training data with synthetic and translated images.</li>
-      <li>Train YOLO object detectors under different data settings.</li>
-      <li>Evaluate generalization on unseen real UAV datasets.</li>
-    </ol>
-  </div>
+  <h2>Pipeline</h2>
+  <ol>
+    <li>Generate synthetic UAV images using a simulation environment.</li>
+    <li>Translate synthetic images toward the real domain using CycleGAN.</li>
+    <li>Train YOLO-based UAV detectors using real and augmented training sets.</li>
+    <li>Evaluate detection performance on unseen real-world UAV datasets.</li>
+  </ol>
 
-  <div class="section">
-    <h2>Qualitative Results</h2>
-    <img src="assets/qualitative_results.png" alt="Qualitative synthetic, translated, and real UAV images">
-  </div>
+  <h2>Code and Data</h2>
+  <p>
+    Code, configuration files, and reproducibility instructions will be added to
+    this repository.
+  </p>
 
-  <div class="section">
-    <h2>Code and Data</h2>
-    <p>
-      Code, configuration files, and instructions for reproducing the augmentation
-      and detection pipeline will be released in this repository.
-    </p>
-  </div>
-
-  <div class="section" id="citation">
-    <h2>Citation</h2>
-    <pre><code>@inproceedings{arezoomandan2025data,
+  <h2>Citation</h2>
+  <pre><code>@inproceedings{arezoomandan2025data,
   title={Data Augmentation Pipeline for Enhanced UAV Surveillance},
   author={Arezoomandan, Solmaz and Klohoker, John and Han, David K.},
   booktitle={Pattern Recognition. ICPR 2024},
@@ -130,14 +68,14 @@
   publisher={Springer},
   doi={10.1007/978-3-031-78172-8_24}
 }</code></pre>
-  </div>
 
-  <div class="section">
-    <h2>Contact</h2>
-    <p>
-      For questions, please contact Solmaz Arezoomandan.
-    </p>
-  </div>
+  <h2>Contact</h2>
+  <p>
+    For questions about this work, please contact Solmaz Arezoomandan.
+  </p>
 
+  <div class="footer">
+    Project page for “Data Augmentation Pipeline for Enhanced UAV Surveillance”.
+  </div>
 </body>
 </html>
