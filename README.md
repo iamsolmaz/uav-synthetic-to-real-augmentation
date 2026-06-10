@@ -57,11 +57,11 @@ The synthetic-to-real image translation stage in this work uses the official PyT
 
 [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 
-We did not modify the original CycleGAN source code. Therefore, this repository does not duplicate the CycleGAN implementation. Instead, users should clone the original repository separately:
+We did not modify the original CycleGAN source code. Therefore, users should clone the original repository separately:
 
 ```bash
 git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix.git external/pytorch-CycleGAN-and-pix2pix
-
+```
 ---
 
 ## Citation
