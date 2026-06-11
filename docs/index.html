@@ -21,13 +21,15 @@
       <h1>Data Augmentation Pipeline for Enhanced UAV Surveillance</h1>
 
       <p class="authors">
-        Solmaz Arezoomandan<sup>1,2</sup>,
-        John Klohoker<sup>1,2</sup>,
-        David Han<sup>1,3</sup>
+        Solmaz Arezoomandan,
+        John Klohoker,
+        David Han
       </p>
+      
       <p class="affil">
-        <sup>1</sup>Drexel University, Philadelphia, PA, USA
+        Drexel University, Philadelphia, PA, USA
       </p>
+      
       <p class="venue">
         International Conference on Pattern Recognition (ICPR) 2024 &middot; Springer LNCS
       </p>
@@ -81,8 +83,7 @@
       <p>The pipeline has three stages:</p>
       <ol>
         <li><strong>Synthetic data generation</strong> &mdash; Unreal Engine + AirSim
-          render drones across four vegetated environments (Landscape Mountain, Wet
-          Flatwoods, Mesic Flatwoods, and Megascan Forest) with randomized pose and range.</li>
+          render drones across four vegetated environments with randomized pose and range.</li>
         <li><strong>Domain adaptation</strong> &mdash; CycleGAN performs unsupervised
           synthetic-to-real translation, requiring no paired data.</li>
         <li><strong>Drone detection</strong> &mdash; YOLOv8m is trained on real data
@@ -115,13 +116,10 @@
     <section>
       <h2>Datasets</h2>
       <ul>
-        <li><strong>Real (training base):</strong> Drone vs. Bird (DvB), split into
-          DvB50 (~50%) and DvB80 (~80%) training subsets.</li>
-        <li><strong>Synthetic (UE):</strong> 10,000 images &mdash; 5 drone models &times;
-          4 environments &times; 500 images.</li>
-        <li><strong>CycleGAN training:</strong> 6,500 synthetic + 5,500 real images.</li>
-        <li><strong>Evaluation (unseen, real):</strong> DetFly (7,346 imgs),
-          Drone Detection (1,793), UAV Detect (4,409), and New Batch.</li>
+        <li><strong>Real (training base):</strong> Drone vs. Bird.</li>
+        <li><strong>Synthetic (UE):</strong> 10,000 images using 5 drone models and 4 environments.</li>
+        <li><strong>CycleGAN training:</strong> synthetic + real images.</li>
+        <li><strong>Evaluation (unseen, real):</strong> DetFly, Drone Detection, UAV Detect, and New Batch.</li>
       </ul>
     </section>
 
@@ -132,8 +130,7 @@
         Inference results of YOLOv8m trained on six dataset compositions and evaluated on
         four unseen real datasets. Augmenting real data (DvB) with Unreal-Engine synthetic
         data, and especially with CycleGAN-translated data, consistently improves long-range
-        drone detection. <strong>Bold</strong> marks the best score per column within each
-        DvB50 and DvB80 group.
+        drone detection.
       </p>
 
       <div class="table-wrap">
@@ -200,7 +197,7 @@
         </table>
       </div>
       <p class="caption">Table 1: Inference results on DetFly, Drone Detection, UAV Detect,
-        and New Batch. Best per column within each group in bold.</p>
+        and New Batch.</p>
 
       <p class="takeaway">
         Across all four test sets, adding CycleGAN-translated synthetic data yields the
@@ -212,8 +209,7 @@
         <!-- Figs. 5 & 6 from the paper -->
         <img src="assets/qualitative.png" alt="Qualitative detection comparison: baseline vs. CycleGAN-augmented model." />
         <figcaption class="caption">Figure 5/6: Detections from the real-only model (left)
-          vs. the CycleGAN-augmented model (right) on DetFly, UAV Detect, and Drone
-          Detection.</figcaption>
+          vs. the CycleGAN-augmented model (right).</figcaption>
       </figure>
     </section>
 
@@ -254,8 +250,7 @@
     <section>
       <h2>Contact</h2>
       <p>
-        Solmaz Arezoomandan &mdash;
-        <a href="mailto:sa3747@dragons.drexel.edu">sa3747@dragons.drexel.edu</a>
+        Solmaz Arezoomandan
       </p>
     </section>
 
