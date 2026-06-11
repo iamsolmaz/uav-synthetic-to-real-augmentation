@@ -74,17 +74,16 @@ If you find this work useful, please cite:
   booktitle={Pattern Recognition. ICPR 2024},
   series={Lecture Notes in Computer Science},
   volume={15306},
-  pages={366--380},
+  pages={366-380},
   year={2025},
   publisher={Springer},
   doi={10.1007/978-3-031-78172-8_24}
 }
   @inproceedings{arezoomandan2024synthetic,
-    title     = {Analyzing the Efficacy of Synthetic Images in Unmanned
-                 Aerial Vehicle Detection},
+    title     = {Analyzing the Efficacy of Synthetic Images in Unmanned Aerial Vehicle Detection},
     author    = {Arezoomandan, Solmaz and Klohoker, John and Han, David K.},
     booktitle = {2024 IEEE International Conference on Consumer Electronics (ICCE)},
-    pages     = {1--6},
+    pages     = {1-6},
     year      = {2024},
     doi       = {10.1109/ICCE59016.2024.10444259}
 ```
