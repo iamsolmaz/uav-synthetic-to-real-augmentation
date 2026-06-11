@@ -84,8 +84,6 @@ If you find this work useful, please cite:
   booktitle={2024 IEEE International Conference on Consumer Electronics (ICCE)}, 
   title={Analyzing the Efficacy of Synthetic Images in Unmanned Aerial Vehicle Detection}, 
   year={2024},
-  volume={},
-  number={},
   pages={1-6},
   keywords={Image segmentation;Training data;Autonomous aerial vehicles;Detection algorithms;Task analysis;Synthetic data;Drones;Synthetic data;UAV detection;AirSim;Simulation},
   doi={10.1109/ICCE59016.2024.10444259}}
