@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Augmentation Pipeline for Enhanced UAV Surveillance</title>
+
+  <!-- SEO / social preview -->
+  <meta name="description" content="A two-phase data augmentation pipeline (Unreal Engine + AirSim synthetic generation and CycleGAN domain adaptation) that improves long-range UAV detection. ICPR 2024." />
+  <meta property="og:title" content="Data Augmentation Pipeline for Enhanced UAV Surveillance" />
+  <meta property="og:description" content="Synthetic generation (Unreal Engine + AirSim) and CycleGAN domain adaptation for long-range drone detection. ICPR 2024." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <!-- ===================== HEADER ===================== -->
+    <header>
+      <h1>Data Augmentation Pipeline for Enhanced UAV Surveillance</h1>
+
+      <p class="authors">
+        Solmaz Arezoomandan<sup>1,2</sup>,
+        John Klohoker<sup>1,2</sup>,
+        David Han<sup>1,3</sup>
+      </p>
+      <p class="affil">
+        <sup>1</sup>Drexel University, Philadelphia, PA, USA
+      </p>
+      <p class="venue">
+        International Conference on Pattern Recognition (ICPR) 2024 &middot; Springer LNCS
+      </p>
+
+      <p class="links">
+        <a href="https://link.springer.com/chapter/10.1007/978-3-031-78172-8_24">Paper</a>
+        <a href="https://doi.org/10.1007/978-3-031-78172-8_24">DOI</a>
+        <a href="https://github.com/iamsolmaz/uav-synthetic-to-real-augmentation">Code</a>
+        <a href="#bibtex">BibTeX</a>
+      </p>
+    </header>
+
+    <!-- ===================== ABSTRACT ===================== -->
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        The growing use of Unmanned Aerial Vehicles (UAVs) presents considerable safety
+        and security challenges, requiring improved capabilities for drone detection.
+        However, collecting real-world data is costly, time consuming, and in some cases
+        subject to rules and regulations. This paper introduces a novel two-phase data
+        augmentation approach aimed at improving the accuracy and efficiency of long-range
+        drone detection systems. The first phase generates synthetic data using Unreal
+        Engine to increase the diversity and richness of the dataset. We then employ a
+        Cycle-consistent Generative Adversarial Network (CycleGAN) to translate these
+        synthetic images into more realistic representations, bridging the gap between
+        synthetic and real datasets. To evaluate the pipeline, we trained the YOLO
+        detector under three scenarios &mdash; real data only, real + synthetic data, and
+        real + CycleGAN-translated synthetic data &mdash; and assessed each on unseen real
+        datasets. Our findings show a marked improvement in drone detection when training
+        includes both synthetic and translated images, with the most significant gains
+        when real data is augmented with translated data.
+      </p>
+    </section>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section>
+      <h2>Overview</h2>
+      <p>
+        Long-range UAV detection is hard: drones are often small, low-resolution, and
+        difficult to distinguish from cluttered backgrounds, while annotated real data is
+        expensive to collect. We address this with a cost-effective augmentation pipeline
+        that (1) generates high-fidelity synthetic drone imagery in vegetated environments,
+        and (2) closes the &ldquo;reality gap&rdquo; via unsupervised image-to-image
+        translation, automating segmentation and bounding-box labeling along the way.
+      </p>
+    </section>
+
+    <!-- ===================== METHOD ===================== -->
+    <section>
+      <h2>Method</h2>
+      <p>The pipeline has three stages:</p>
+      <ol>
+        <li><strong>Synthetic data generation</strong> &mdash; Unreal Engine + AirSim
+          render drones across four vegetated environments (Landscape Mountain, Wet
+          Flatwoods, Mesic Flatwoods, and Megascan Forest) with randomized pose and range.</li>
+        <li><strong>Domain adaptation</strong> &mdash; CycleGAN performs unsupervised
+          synthetic-to-real translation, requiring no paired data.</li>
+        <li><strong>Drone detection</strong> &mdash; YOLOv8m is trained on real data
+          augmented with synthetic and translated images, then evaluated on unseen sets.</li>
+      </ol>
+
+      <figure>
+        <!-- Fig. 1 from the paper -->
+        <img src="assets/pipeline.png" alt="Proposed framework: synthetic generation and CycleGAN domain adaptation feeding YOLO detection." />
+        <figcaption class="caption">Figure 1: The proposed framework &mdash; data
+          augmentation pipeline (left) and YOLO detection (right).</figcaption>
+      </figure>
+
+      <figure>
+        <!-- Fig. 2 from the paper -->
+        <img src="assets/environments.png" alt="Sample synthetic images from four Unreal Engine environments." />
+        <figcaption class="caption">Figure 2: Synthetic image samples across the four
+          Unreal Engine environments.</figcaption>
+      </figure>
+
+      <figure>
+        <!-- Fig. 4 from the paper -->
+        <img src="assets/translation.png" alt="Synthetic images (top) and their CycleGAN translations into the real domain (bottom)." />
+        <figcaption class="caption">Figure 4: Synthetic images (top) alongside their
+          CycleGAN translations into the real domain (bottom).</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== DATASETS ===================== -->
+    <section>
+      <h2>Datasets</h2>
+      <ul>
+        <li><strong>Real (training base):</strong> Drone vs. Bird (DvB), split into
+          DvB50 (~50%) and DvB80 (~80%) training subsets.</li>
+        <li><strong>Synthetic (UE):</strong> 10,000 images &mdash; 5 drone models &times;
+          4 environments &times; 500 images.</li>
+        <li><strong>CycleGAN training:</strong> 6,500 synthetic + 5,500 real images.</li>
+        <li><strong>Evaluation (unseen, real):</strong> DetFly (7,346 imgs),
+          Drone Detection (1,793), UAV Detect (4,409), and New Batch.</li>
+      </ul>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section>
+      <h2>Results</h2>
+      <p>
+        Inference results of YOLOv8m trained on six dataset compositions and evaluated on
+        four unseen real datasets. Augmenting real data (DvB) with Unreal-Engine synthetic
+        data, and especially with CycleGAN-translated data, consistently improves long-range
+        drone detection. <strong>Bold</strong> marks the best score per column within each
+        DvB50 and DvB80 group.
+      </p>
+
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr>
+              <th rowspan="2">Trained model</th>
+              <th colspan="2">DetFly</th>
+              <th colspan="2">Drone Detection</th>
+              <th colspan="2">UAV Detect</th>
+              <th colspan="2">New Batch</th>
+            </tr>
+            <tr>
+              <th>mAP50</th><th>mAP50-95</th>
+              <th>mAP50</th><th>mAP50-95</th>
+              <th>mAP50</th><th>mAP50-95</th>
+              <th>mAP50</th><th>mAP50-95</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DvB50</td>
+              <td>0.462</td><td>0.220</td>
+              <td><strong>0.660</strong></td><td><strong>0.282</strong></td>
+              <td>0.580</td><td>0.288</td>
+              <td>0.3825</td><td>0.1800</td>
+            </tr>
+            <tr>
+              <td>DvB50 + UE</td>
+              <td>0.475</td><td>0.240</td>
+              <td>0.660</td><td>0.282</td>
+              <td>0.574</td><td>0.306</td>
+              <td>0.3904</td><td><strong>0.2087</strong></td>
+            </tr>
+            <tr class="group-end">
+              <td>DvB50 + UE_CycleGAN</td>
+              <td><strong>0.524</strong></td><td><strong>0.262</strong></td>
+              <td>0.614</td><td>0.263</td>
+              <td><strong>0.601</strong></td><td><strong>0.334</strong></td>
+              <td><strong>0.3954</strong></td><td>0.1957</td>
+            </tr>
+            <tr>
+              <td>DvB80</td>
+              <td>0.461</td><td>0.226</td>
+              <td>0.645</td><td>0.292</td>
+              <td>0.610</td><td>0.328</td>
+              <td>0.3774</td><td>0.2237</td>
+            </tr>
+            <tr>
+              <td>DvB80 + UE</td>
+              <td>0.487</td><td>0.238</td>
+              <td>0.677</td><td>0.300</td>
+              <td>0.575</td><td>0.304</td>
+              <td>0.4100</td><td>0.2161</td>
+            </tr>
+            <tr>
+              <td>DvB80 + UE_CycleGAN</td>
+              <td><strong>0.510</strong></td><td><strong>0.246</strong></td>
+              <td><strong>0.694</strong></td><td><strong>0.311</strong></td>
+              <td><strong>0.612</strong></td><td><strong>0.352</strong></td>
+              <td><strong>0.4173</strong></td><td><strong>0.2455</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">Table 1: Inference results on DetFly, Drone Detection, UAV Detect,
+        and New Batch. Best per column within each group in bold.</p>
+
+      <p class="takeaway">
+        Across all four test sets, adding CycleGAN-translated synthetic data yields the
+        strongest detection performance &mdash; confirming that bridging the reality gap,
+        not just adding synthetic data, drives the gains.
+      </p>
+
+      <figure>
+        <!-- Figs. 5 & 6 from the paper -->
+        <img src="assets/qualitative.png" alt="Qualitative detection comparison: baseline vs. CycleGAN-augmented model." />
+        <figcaption class="caption">Figure 5/6: Detections from the real-only model (left)
+          vs. the CycleGAN-augmented model (right) on DetFly, UAV Detect, and Drone
+          Detection.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== CODE & DATA ===================== -->
+    <section>
+      <h2>Code &amp; Data</h2>
+      <p>
+        Code, configuration files, and reproducibility instructions are being added to the
+        <a href="https://github.com/iamsolmaz/uav-synthetic-to-real-augmentation">GitHub repository</a>.
+      </p>
+    </section>
+
+    <!-- ===================== BIBTEX ===================== -->
+    <section id="bibtex">
+      <h2>Citation</h2>
+      <div class="bibtex-block">
+        <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+        <pre id="bibtex-text">@inproceedings{arezoomandan2024uav,
+  title     = {Data Augmentation Pipeline for Enhanced UAV Surveillance},
+  author    = {Arezoomandan, Solmaz and Klohoker, John and Han, David},
+  editor    = {Antonacopoulos, Apostolos and Chaudhuri, Subhasis and
+               Chellappa, Rama and Liu, Cheng-Lin and Bhattacharya, Saumik
+               and Pal, Umapada},
+  booktitle = {Pattern Recognition (ICPR 2024)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {15306},
+  pages     = {366--380},
+  year      = {2024},
+  publisher = {Springer Nature Switzerland},
+  address   = {Cham},
+  doi       = {10.1007/978-3-031-78172-8_24},
+  url       = {https://doi.org/10.1007/978-3-031-78172-8_24}
+}</pre>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section>
+      <h2>Contact</h2>
+      <p>
+        Solmaz Arezoomandan &mdash;
+        <a href="mailto:sa3747@dragons.drexel.edu">sa3747@dragons.drexel.edu</a>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p>Drexel University &middot; ICPR 2024</p>
+    </footer>
+  </main>
+
+  <script>
+    function copyBibtex() {
+      const text = document.getElementById('bibtex-text').innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        const btn = document.querySelector('.copy-btn');
+        const original = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(function () { btn.innerText = original; }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
