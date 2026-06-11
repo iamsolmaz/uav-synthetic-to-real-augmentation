@@ -43,11 +43,10 @@ https://iamsolmaz.github.io/uav-synthetic-to-real-augmentation/
 
 ---
 
-## Code and Data
+## Data
 
-Code, configuration files, and reproducibility instructions will be added to this repository.
 
-Dataset access and additional resources will be provided based on availability and sharing permissions.
+Dataset access will be provided based on availability and sharing permissions.
 
 ---
 
