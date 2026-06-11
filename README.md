@@ -79,14 +79,14 @@ If you find this work useful, please cite:
   publisher={Springer},
   doi={10.1007/978-3-031-78172-8_24}
 }
-@INPROCEEDINGS{10444259,
-  author={Arezoomandan, Solmaz and Klohoker, John and Han, David K.},
-  booktitle={2024 IEEE International Conference on Consumer Electronics (ICCE)}, 
-  title={Analyzing the Efficacy of Synthetic Images in Unmanned Aerial Vehicle Detection}, 
-  year={2024},
-  pages={1-6},
-  keywords={Image segmentation;Training data;Autonomous aerial vehicles;Detection algorithms;Task analysis;Synthetic data;Drones;Synthetic data;UAV detection;AirSim;Simulation},
-  doi={10.1109/ICCE59016.2024.10444259}}
+  @inproceedings{arezoomandan2024synthetic,
+    title     = {Analyzing the Efficacy of Synthetic Images in Unmanned
+                 Aerial Vehicle Detection},
+    author    = {Arezoomandan, Solmaz and Klohoker, John and Han, David K.},
+    booktitle = {2024 IEEE International Conference on Consumer Electronics (ICCE)},
+    pages     = {1--6},
+    year      = {2024},
+    doi       = {10.1109/ICCE59016.2024.10444259}
 ```
 ---
 
