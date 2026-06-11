@@ -53,6 +53,72 @@
     <li>Evaluate detection performance on unseen real-world UAV datasets.</li>
   </ol>
 
+    <h2>Results</h2>
+  <p>Inference results of YOLOv8m trained on six dataset compositions and
+  evaluated on three unseen real datasets — DetFly, Drone Detection, and
+  UAV Detect. Augmenting real data (DvB) with Unreal-Engine synthetic data,
+  and especially with CycleGAN-translated data, consistently improves
+  long-range drone detection. <strong>Bold</strong> marks the best score
+  per column.</p>
+
+  <div class="table-wrap">
+    <table class="results">
+      <thead>
+        <tr>
+          <th rowspan="2">Trained model</th>
+          <th colspan="2">DetFly</th>
+          <th colspan="2">Drone Detection</th>
+          <th colspan="2">UAV Detect</th>
+        </tr>
+        <tr>
+          <th>mAP50</th><th>mAP50-95</th>
+          <th>mAP50</th><th>mAP50-95</th>
+          <th>mAP50</th><th>mAP50-95</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DvB50</td>
+          <td>0.462</td><td>0.220</td>
+          <td>0.660</td><td>0.282</td>
+          <td>0.580</td><td>0.288</td>
+        </tr>
+        <tr>
+          <td>DvB50 + UE</td>
+          <td>0.475</td><td>0.240</td>
+          <td>0.660</td><td>0.282</td>
+          <td>0.574</td><td>0.306</td>
+        </tr>
+        <tr class="best">
+          <td>DvB50 + UE_CycleGAN</td>
+          <td><strong>0.524</strong></td><td><strong>0.262</strong></td>
+          <td>0.614</td><td>0.263</td>
+          <td>0.601</td><td>0.334</td>
+        </tr>
+        <tr>
+          <td>DvB80</td>
+          <td>0.461</td><td>0.226</td>
+          <td>0.645</td><td>0.292</td>
+          <td>0.610</td><td>0.328</td>
+        </tr>
+        <tr>
+          <td>DvB80 + UE</td>
+          <td>0.487</td><td>0.238</td>
+          <td>0.677</td><td>0.300</td>
+          <td>0.575</td><td>0.304</td>
+        </tr>
+        <tr class="best">
+          <td>DvB80 + UE_CycleGAN</td>
+          <td>0.510</td><td>0.246</td>
+          <td><strong>0.694</strong></td><td><strong>0.311</strong></td>
+          <td><strong>0.612</strong></td><td><strong>0.352</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">Table 1: Inference results on DetFly, Drone Detection,
+  and UAV Detect. Best per column in bold.</p>
+  
   <h2>Code and Data</h2>
   <p>
     Code, configuration files, and reproducibility instructions will be added to
